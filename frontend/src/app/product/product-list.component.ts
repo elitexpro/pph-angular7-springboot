@@ -15,7 +15,6 @@ export class ProductListComponent implements OnInit {
   imageMargin: number = 2;
   showImage: boolean = false;
   errorMessage: string;
-  url: string = 'http://localhost:8080';
   _listFilter = '';
   get listFilter(): string {
     return this._listFilter;
@@ -25,6 +24,7 @@ export class ProductListComponent implements OnInit {
     this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
   }
 
+  products: IProduct[];
   filteredProducts: IProduct[];
   constructor(private productService: ProductService,
               private http: HttpClient) {

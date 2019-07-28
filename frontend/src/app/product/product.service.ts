@@ -9,7 +9,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 })
 export class ProductService {
   private productUrl = 'api/products/products.json';
-  private url = 'http://127.0.0.1:8080/api/listall';
+  private url = 'http://localhost:8080/api/listall';
   products: IProduct[];
   constructor(private http: HttpClient) {}
   getProducts(): Observable<IProduct[]> {

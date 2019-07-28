@@ -1,6 +1,8 @@
 package com.productlist.productlist;
 
 import com.productlist.productlist.model.Product;
+import com.productlist.productlist.model.User;
+import com.productlist.productlist.repository.UserRepository;
 import com.productlist.productlist.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductListApplication implements CommandLineRunner {
     @Autowired
     ProductService productService;
+    @Autowired
+    UserRepository userRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(ProductListApplication.class, args);
     }
 
-    @GetMapping("/")
-    public String hello() {
-        log.info("=======welcome to the backend application ======");
-        return "Hello world";
-    }
+//    @GetMapping("/")
+//    public String hello() {
+//        log.info("=======welcome to the backend application ======");
+//        return "Hello world";
+//    }
     @Override
     public void run(String... args) throws Exception {
         Product product = new Product();
@@ -89,5 +93,11 @@ public class ProductListApplication implements CommandLineRunner {
         product.setImageUrl("https://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png");
         productService.saveProduct(product);
         log.info("=====saving the prodcut=====");
+
+        User user = User.builder()
+                .firstName("Rakesh")
+                .lastName("venkatesh").build();
+        userRepository.save(user);
+        log.info("===saving the user");
     }
 }
